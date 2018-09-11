@@ -1,0 +1,21 @@
+version: '2'
+services:
+  mule:
+    image: tel2.telecallmart.com:5000/denrl/mule:413
+    container_name: mule
+    ports:
+      - "28081:8081"
+    volumes:
+      - "/opt/mule/apps:/opt/mule/apps"
+    networks:
+      mule2:
+    restart: always
+
+networks:
+  mule2:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.29.0.0/24
+        gateway: 172.29.0.5
